@@ -79,15 +79,18 @@ export default class CarInfo extends Component{
     componentDidMount(){
         //后台初始数据请求
     }
+    chengeInput = () =>{
+      this.setState((state)=>({disable: !this.state.disable}))
+    }
     render(){
             return <div>
             <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>车辆信息</Breadcrumb.Item>
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
-            <DealInfo disable={this.state.disable}></DealInfo>
+            <DealInfo disable={this.state.disable} chengeInput={this.chengeInput}></DealInfo>
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <Button style={{margin:"0 0 0 20px"}} onClick={this.addCarInfo}>新增</Button>
+            <Button style={{margin:"0 0 0 20px"}} onClick={this.addCarInfo} >新增</Button>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>
           </div> 
