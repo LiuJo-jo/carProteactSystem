@@ -6,18 +6,20 @@ import { useNavigate, useRoutes, Link } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 
 const items = [];
+// console.log(DefineRoutes,"22");debugger
 DefineRoutes.forEach((item) => {
   items.push({
     label: <Link to={item.path}>{item.label}</Link>,
     key: item.path,
     icon: item.icon,})})
-
+   
 const HeaderPge = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  let element = useRoutes(DefineRoutes);
+  let element = useRoutes(DefineRoutes[0].children);
+
   const navigate = useNavigate();
   const onClick = (e) =>{
     navigate(e.key);
