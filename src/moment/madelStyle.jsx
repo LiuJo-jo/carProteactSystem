@@ -3,7 +3,7 @@ import { Button, Modal, Space } from 'antd';
 import { useState } from 'react';
 import FormStyle from './FormStyle';
 import React from 'react';
-const LocalizedModal = () => {
+const madelStyle = () => {
   const [open, setOpen] = useState(false);
   const showModal = () => {
     setOpen(true);
@@ -23,29 +23,11 @@ const LocalizedModal = () => {
         onCancel={hideModal}
         okText="确认"
         cancelText="取消"
+        footer=""
+        
       >
-        <FormStyle></FormStyle>
+        <FormStyle changeTypeTable={hideModal}></FormStyle>
       </Modal>
-    </>
-  );
-};
-const madelStyle = () => {
-  const [modal, contextHolder] = Modal.useModal();
-  const confirm = () => {
-    modal.confirm({
-      title: 'Confirm',
-      icon: <ExclamationCircleOutlined />,
-      content: 'Bla bla ...',
-      okText: '确认',
-      cancelText: '取消',
-    });
-  };
-  return (
-    <>
-      <Space>
-        <LocalizedModal />
-      </Space>
-      {contextHolder}
     </>
   );
 };

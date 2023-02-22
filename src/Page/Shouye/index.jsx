@@ -1,6 +1,7 @@
 import React,{Component} from "react";
 import {  Breadcrumb,Button } from 'antd';
 import { createBrowserHistory } from 'history';
+import MadelStyle from '../../moment/madelStyle'
 import '../Shouye/index.css';
 import DealInfo from '../DealInfo/index';
 const history = createBrowserHistory();

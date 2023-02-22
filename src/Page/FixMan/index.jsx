@@ -90,9 +90,7 @@ export default class CarInfo extends Component{
             <Breadcrumb.Item>保养人员</Breadcrumb.Item>
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
-            {/* <DealInfo disable={this.state.disable} chengeInput={this.chengeInput}></DealInfo> */}
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            {/* <Button style={{margin:"0 0 0 20px"}} onClick={this.addCarInfo} >新增</Button> */}
             <MadelStyle></MadelStyle>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>

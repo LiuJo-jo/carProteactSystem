@@ -3,6 +3,7 @@ import {  Breadcrumb ,Space,Button} from 'antd';
 import {InputStyle} from '../../moment/InputStyle';
 import TableStyle from '../../moment/TableStyle';
 import DealInfo from '../DealInfo';
+import MadelStyle from '../../moment/madelStyle'
 const columns = [
     {
       title: 'Id',
@@ -90,7 +91,7 @@ export default class CarInfo extends Component{
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
             <DealInfo disable={this.state.disable} chengeInput={this.chengeInput}></DealInfo>
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <Button style={{margin:"0 0 0 20px"}} onClick={this.addCarInfo} >新增</Button>
+            <MadelStyle/>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>
           </div> 

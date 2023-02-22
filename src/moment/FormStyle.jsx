@@ -25,14 +25,20 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const onFinish = (values) => {
-  console.log(values);
-};
-const InputStyle = () => (
-  <Form
+
+class InputStyle extends React.Component{
+
+  onFinish = (values) => {
+    //传后端values
+    console.log(values);
+    this.props.changeTypeTable();
+  }
+
+  render(){
+    return <Form
     {...layout}
     name="nest-messages"
-    onFinish={onFinish}
+    onFinish={this.onFinish}
     style={{
       width: "80%",
       height: "50%",
@@ -86,10 +92,11 @@ const InputStyle = () => (
         offset: 8,
       }}
     >
-      {/* <Button type="primary" htmlType="submit">
+      <Button type="primary" htmlType="submit">
         Submit
-      </Button> */}
+      </Button>
     </Form.Item>
   </Form>
-);
-export default InputStyle;
+  }
+}
+export default InputStyle
