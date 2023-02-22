@@ -2,10 +2,17 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
 import { createBrowserHistory } from 'history';
 import  '../Login/indexStyle.css';
-import  DefineRoutes  from '../../router/DefineRoutes';
+
 const history = createBrowserHistory();
 const onFinish = (values) => {
-    history.push(DefineRoutes[0].path);
+    console.log("111");
+    //处理导航显示
+    history.push('/home/shouye',{
+        name:'测试',
+        username:'1',
+        shenfen:'管理员'
+    });
+    // console.log(history.location,"??");
     history.go();
 };
 const onFinishFailed = (errorInfo) => {

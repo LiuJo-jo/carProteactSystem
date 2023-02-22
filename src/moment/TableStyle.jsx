@@ -1,6 +1,5 @@
 import React from 'react';
-import { Space, Table, Tag } from 'antd';
-import { ColumnsType } from 'antd/es/table';
+import {  Table } from 'antd';
 
 const pageChange =(page, pageSize)=>{
     //待完善-页码更改数据重新加载
@@ -29,9 +28,7 @@ export default class TableStyle extends React.Component{
             pageSize: 10,
             onChange:pageChange,
           }}
-          scroll={{
-            y: 240,
-          }}
+         
           bordered="true"
           ></Table>
 

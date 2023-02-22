@@ -6,7 +6,6 @@ import { useNavigate, useRoutes, Link } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 
 const items = [];
-// console.log(DefineRoutes,"22");debugger
 DefineRoutes.forEach((item) => {
   items.push({
     label: <Link to={item.path}>{item.label}</Link>,
@@ -18,7 +17,7 @@ const HeaderPge = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  let element = useRoutes(DefineRoutes[0].children);
+  let element = useRoutes(DefineRoutes);
 
   const navigate = useNavigate();
   const onClick = (e) =>{
@@ -43,7 +42,7 @@ const HeaderPge = () => {
             borderRadius:"3px",
           }}
         >汽车养护管理系统</div>
-        <Menu theme="dark" defaultSelectedKeys={['/shouye']} mode="inline" items={items} onClick={onClick}/>
+        <Menu theme="dark" defaultSelectedKeys={['/home/shouye']} mode="inline" items={items} onClick={onClick}/>
       </Sider>
       <Layout className="site-layout">
         <Header

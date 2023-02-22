@@ -1,5 +1,8 @@
 import { Button, Form, Input, InputNumber } from 'antd';
 import React from 'react';
+
+
+//需要封装每个类型的输入框……
 const layout = {
   labelCol: {
     span: 8,
@@ -31,7 +34,7 @@ const InputStyle = () => (
     name="nest-messages"
     onFinish={onFinish}
     style={{
-      width: "60%",
+      width: "80%",
       height: "50%",
     }}
     validateMessages={validateMessages}
@@ -83,9 +86,9 @@ const InputStyle = () => (
         offset: 8,
       }}
     >
-      <Button type="primary" htmlType="submit">
+      {/* <Button type="primary" htmlType="submit">
         Submit
-      </Button>
+      </Button> */}
     </Form.Item>
   </Form>
 );

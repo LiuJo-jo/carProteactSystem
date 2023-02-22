@@ -3,71 +3,35 @@ import { FileOutlined, PieChartOutlined, UserOutlined, CarOutlined } from '@ant-
 //资源路径地址
 import  Shouye  from '../Page/Shouye/index';
 import CarInfo  from '../Page/CarInfo/index';
-import HeaderPge from '../Page/index';
-
+import Yuyue  from '../Page/Yuyue/index';
+import FixMan  from '../Page/FixMan/index';
 //路由声明
 //使用memo缓存页面，防止重复加载
-const DefineRoutes1 = 
-        [   
-            {
-                path:'/home',
-                element:<HeaderPge/>,
-                children:[{
-                    //首页路由
-                    path: '/shouye',
-                    label:'首页',
-                    element: <Shouye></Shouye>,
-                    icon: <PieChartOutlined />
-                },
-                {
-                    //车辆信息路由
-                    path: '/carinfo',
-                    label:"车辆信息",
-                    element: <CarInfo></CarInfo>,
-                    icon:  <CarOutlined />
-                },
-                {
-                    
-                    path: '/yuyue',
-                    label:"预约列表",
-                    element: <CarInfo></CarInfo>,
-                    icon:  <FileOutlined />
-                },
-                {   
-                    path: '/weixiu',
-                    label:"维修人员",
-                    element: <CarInfo></CarInfo>,
-                    icon:  <UserOutlined />
-                }]
-            }
-        ]
-
-
-const DefineRoutes= [{
-    //首页路由
-    path: '/shouye',
-    label:'首页',
-    element: <Shouye></Shouye>,
-    icon: <PieChartOutlined />
-},
-{
-    //车辆信息路由
-    path: '/carinfo',
-    label:"车辆信息",
-    element: <CarInfo></CarInfo>,
-    icon:  <CarOutlined />
-},
-{
-    
-    path: '/yuyue',
-    label:"预约列表",
-    element: <CarInfo></CarInfo>,
-    icon:  <FileOutlined />
-},
-{   
-    path: '/weixiu',
-    label:"维修人员",
-    element: <CarInfo></CarInfo>,
-    icon:  <UserOutlined />
-}]
+    const DefineRoutes= [{
+        //首页路由
+        path: '/home/shouye',
+        label:'首页',
+        element: <Shouye></Shouye>,
+        icon: <PieChartOutlined />
+    },
+    {
+        //车辆信息路由
+        path: '/home/carinfo',
+        label:"车辆信息",
+        element: <CarInfo></CarInfo>,
+        icon:  <CarOutlined />
+    },
+    {
+        
+        path: '/home/yuyue',
+        label:"预约列表",
+        element: <Yuyue></Yuyue>,
+        icon:  <FileOutlined />
+    },
+    {   
+        path: '/home/weixiu',
+        label:"维修人员",
+        element: <FixMan></FixMan>,
+        icon:  <UserOutlined />
+    }]
 export default DefineRoutes;

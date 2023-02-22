@@ -8,10 +8,10 @@ import Home from './Page/index';
 function App() {
   return (
     <BrowserRouter>
-    {/* <HeaderPge></HeaderPge> */}
     <Routes>
       <Route path = '/' element={<Login/>}></Route>
       <Route path = '/home' element={<Home/>}></Route>
+      <Route path = '/*' element={<Home/>}></Route>
     </Routes>
     </BrowserRouter>
   );
