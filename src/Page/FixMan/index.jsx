@@ -4,18 +4,18 @@ import {InputStyle} from '../../moment/InputStyle';
 import TableStyle from '../../moment/TableStyle';
 // import DealInfo from '../DealInfo';
 import MadelStyle from '../../moment/madelStyle'
-
+const { TextArea } = Input;
 const columns = [
     {
-      title: 'Id',
+      title: '员工Id',
       dataIndex: 'id',
       key: 'id',
       fillIn:false,
     },
     {
-      title: '车牌号码',
-      dataIndex: 'numberplate',
-      key: 'numberplate',
+      title: '保养员姓名',
+      dataIndex: 'name',
+      key: 'name',
       fillIn:true,
       style:<Input/>,
       rules:
@@ -23,17 +23,6 @@ const columns = [
           required: true,
         },
     },
-    {
-        title: '车主姓名',
-        dataIndex: 'name',
-        key: 'name',
-        fillIn:true,
-        style:<Input/>,
-        rules:
-        {
-          required: true,
-        },
-      },
     {
         title: '联系方式',
         dataIndex: 'phone',
@@ -54,7 +43,14 @@ const columns = [
       dataIndex: 'createManeger',
       key: 'createManeger',
       fillIn:false,
-    },{
+    },
+    {
+      title: '备注',
+      dataIndex: 'other',
+      key: 'other',
+      fillIn:true,
+      style: <TextArea rows={3} maxLength={255} />,
+  },{
         title: '操作',
       dataIndex: 'operate',
       key: 'operate',

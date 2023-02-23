@@ -16,11 +16,8 @@ const layout = {
 const validateMessages = {
   required: '${label} 不得为空！',
   types: {
-    email: '${label} is not a valid email!',
-    number: '${label} is not a valid number!',
-  },
-  number: {
-    range: '${label} must be between ${min} and ${max}',
+    email: '${label} 填写格式错误!',
+    number: '${label} 填写格式错误!',
   },
 };
 /* eslint-enable no-template-curly-in-string */
@@ -34,6 +31,7 @@ class InputStyle extends React.Component{
   onFinish = (values) => {
     //传后端values
     console.log(values);
+    this.setState(()=>({...values}));
     this.props.changeTypeTable();
   }
 
@@ -44,7 +42,6 @@ class InputStyle extends React.Component{
     const column = this.props.columns.filter((item)=>{
       return item.fillIn
     })
-    console.log(column);
     return <Form
     {...layout}
     name="nest-messages"
@@ -61,7 +58,6 @@ class InputStyle extends React.Component{
         return <Form.Item  label={element.title} name = {[action,element.key]}  rules={[element.rules]} key={index}>{element.style}</Form.Item>;
       })
     }
-
     <Form.Item
       wrapperCol={{
         ...layout.wrapperCol,
