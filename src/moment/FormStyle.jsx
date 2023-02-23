@@ -14,7 +14,7 @@ const layout = {
 
 /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
-  required: '${label} is required!',
+  required: '${label} 不得为空！',
   types: {
     email: '${label} is not a valid email!',
     number: '${label} is not a valid number!',
@@ -27,6 +27,9 @@ const validateMessages = {
 
 
 class InputStyle extends React.Component{
+  constructor(props){
+    super(props);
+  }
 
   onFinish = (values) => {
     //传后端values
@@ -34,7 +37,14 @@ class InputStyle extends React.Component{
     this.props.changeTypeTable();
   }
 
+ 
+
   render(){
+    const action = this.props.action;
+    const column = this.props.columns.filter((item)=>{
+      return item.fillIn
+    })
+    console.log(column);
     return <Form
     {...layout}
     name="nest-messages"
@@ -45,47 +55,13 @@ class InputStyle extends React.Component{
     }}
     validateMessages={validateMessages}
   >
-    <Form.Item
-      name={['user', 'name']}
-      label="车牌号码"
-      rules={[
-        {
-          required: true,
-        },
-      ]}
-    >
-      <Input />
-    </Form.Item>
-    <Form.Item
-      name={['user', 'email']}
-      label="Email"
-      rules={[
-        {
-          type: 'email',
-        },
-      ]}
-    >
-      <Input />
-    </Form.Item>
-    <Form.Item
-      name={['user', 'age']}
-      label="Age"
-      rules={[
-        {
-          type: 'number',
-          min: 0,
-          max: 99,
-        },
-      ]}
-    >
-      <InputNumber />
-    </Form.Item>
-    <Form.Item name={['user', 'website']} label="Website">
-      <Input />
-    </Form.Item>
-    <Form.Item name={['user', 'introduction']} label="Introduction">
-      <Input.TextArea />
-    </Form.Item>
+    {
+      column.map((element,index)=>{
+        console.log(element)
+        return <Form.Item  label={element.title} name = {[action,element.key]}  rules={[element.rules]} key={index}>{element.style}</Form.Item>;
+      })
+    }
+
     <Form.Item
       wrapperCol={{
         ...layout.wrapperCol,
@@ -93,7 +69,7 @@ class InputStyle extends React.Component{
       }}
     >
       <Button type="primary" htmlType="submit">
-        Submit
+        提交
       </Button>
     </Form.Item>
   </Form>

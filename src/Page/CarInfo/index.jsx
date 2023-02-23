@@ -91,7 +91,7 @@ export default class CarInfo extends Component{
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
             <DealInfo disable={this.state.disable} chengeInput={this.chengeInput}></DealInfo>
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <MadelStyle/>
+            <MadelStyle columns={columns}/>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>
           </div> 

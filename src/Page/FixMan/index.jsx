@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {  Breadcrumb ,Space,Button} from 'antd';
+import {  Breadcrumb ,Space,Button,Input} from 'antd';
 import {InputStyle} from '../../moment/InputStyle';
 import TableStyle from '../../moment/TableStyle';
 // import DealInfo from '../DealInfo';
@@ -10,33 +10,55 @@ const columns = [
       title: 'Id',
       dataIndex: 'id',
       key: 'id',
+      fillIn:false,
     },
     {
       title: '车牌号码',
       dataIndex: 'numberplate',
       key: 'numberplate',
+      fillIn:true,
+      style:<Input/>,
+      rules:
+        {
+          required: true,
+        },
     },
     {
         title: '车主姓名',
         dataIndex: 'name',
         key: 'name',
+        fillIn:true,
+        style:<Input/>,
+        rules:
+        {
+          required: true,
+        },
       },
     {
-      title: '联系方式',
-      dataIndex: 'phone',
-      key: 'phone',
+        title: '联系方式',
+        dataIndex: 'phone',
+        key: 'phone',
+        fillIn:true,
+        style:<Input/>,
+        rules:
+        {
+          required: true,
+        },
     },{
         title: '创建时间',
       dataIndex: 'createTime',
       key: 'createTime',
+      fillIn:false,
     },{
         title: '创建人',
       dataIndex: 'createManeger',
       key: 'createManeger',
+      fillIn:false,
     },{
         title: '操作',
       dataIndex: 'operate',
       key: 'operate',
+      fillIn:false,
       render:(text, record, _, action)=>(
              <Space size="middle">
                  <Button type='link' style={{color:"#1677ff"}} onClick={deleteInfo(record)}>删除</Button>
@@ -91,7 +113,7 @@ export default class CarInfo extends Component{
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <MadelStyle></MadelStyle>
+            <MadelStyle columns={columns} action = 'fix'></MadelStyle>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>
           </div> 

@@ -3,7 +3,7 @@ import { Button, Modal, Space } from 'antd';
 import { useState } from 'react';
 import FormStyle from './FormStyle';
 import React from 'react';
-const madelStyle = () => {
+const madelStyle = (props) => {
   const [open, setOpen] = useState(false);
   const showModal = () => {
     setOpen(true);
@@ -11,6 +11,7 @@ const madelStyle = () => {
   const hideModal = () => {
     setOpen(false);
   };
+  console.log('madasstyle'+props.columns);
   return (
     <>
       <Button  style={{margin:"0 0 0 20px"}} onClick={showModal}>
@@ -24,9 +25,8 @@ const madelStyle = () => {
         okText="确认"
         cancelText="取消"
         footer=""
-        
       >
-        <FormStyle changeTypeTable={hideModal}></FormStyle>
+        <FormStyle changeTypeTable={hideModal} columns={props.columns} action = {props.action}></FormStyle>
       </Modal>
     </>
   );
