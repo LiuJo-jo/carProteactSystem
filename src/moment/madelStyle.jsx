@@ -1,5 +1,4 @@
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { Button, Modal, Space } from 'antd';
+import { Button, Modal } from 'antd';
 import { useState } from 'react';
 import FormStyle from './FormStyle';
 import React from 'react';
@@ -11,14 +10,13 @@ const madelStyle = (props) => {
   const hideModal = () => {
     setOpen(false);
   };
-  console.log('madasstyle'+props.columns);
   return (
     <>
       <Button  style={{margin:"0 0 0 20px"}} onClick={showModal}>
-        新增
+        {props.label}
       </Button>
       <Modal
-        title="新增"
+        title={props.label}
         open={open}
         onOk={hideModal}
         onCancel={hideModal}
@@ -26,7 +24,7 @@ const madelStyle = (props) => {
         cancelText="取消"
         footer=""
       >
-        <FormStyle changeTypeTable={hideModal} columns={props.columns} action = {props.action}></FormStyle>
+        <FormStyle changeTypeTable={hideModal} columns={props.columns}></FormStyle>
       </Modal>
     </>
   );

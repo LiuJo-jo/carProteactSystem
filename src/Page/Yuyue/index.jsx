@@ -1,11 +1,8 @@
 import React,{Component} from "react";
-import {  Breadcrumb ,Space,Button,Input} from 'antd';
+import {  Breadcrumb ,Space,Button} from 'antd';
 import {InputStyle} from '../../moment/InputStyle';
 import TableStyle from '../../moment/TableStyle';
 import MadelStyle from '../../moment/madelStyle';
-import DealInfo from '../DealInfo';
-import { DatePickerTime, Selects } from '../../moment/Inputs'
-const { TextArea } = Input;
 const branchs = [
     {
       value: '奥拓',
@@ -46,11 +43,12 @@ const columns = [
       dataIndex: 'numberplate',
       key: 'numberplate',
       fillIn: true,
-      style:<Selects items = {branchs}></Selects>,
+      style:"select",
       rules:
       {
         required: true,
       },
+      options:branchs,
     },
     {
       //从后台取
@@ -58,28 +56,29 @@ const columns = [
         dataIndex: 'branch',
         key: 'branch',
         fillIn: true,
-        style:<Selects items = {branchs}></Selects>
+        style:'select',
+        options:branchs,
       },
     {
         title: '预约人姓名',
         dataIndex: 'name',
         key: 'name',
         fillIn: true,
-        style:<Input/>,
+        style:"input",
       },
     {
       title: '联系方式',
       dataIndex: 'phone',
       key: 'phone',
       fillIn: false,
-      style:<Input/>,
+      style:'input',
     },
     {
         title: '保养项目',
       dataIndex: 'project',
       key: 'project',
       fillIn: true,
-      style: <TextArea rows={3} maxLength={255} />,
+      style: "textarea",
       rules:
       {
         required: true,
@@ -90,7 +89,7 @@ const columns = [
       dataIndex: 'maintainTime',
       key: 'maintainTime',
       fillIn: true,
-      style:<DatePickerTime/>,
+      style:"date",
       rules:
       {
         required: true,
@@ -112,21 +111,23 @@ const columns = [
       dataIndex: 'fixMan',
       key: 'fixMan',
       fillIn: true,
-      style:<Selects items = {fixMan}></Selects>,
+      style:"select",
       rules:
       {
         required: true,
       },
+      options:fixMan,
     },{
         title: '保养状态',
       dataIndex: 'maintainState',
       key: 'maintainState',
       fillIn: true,
-      style:<Selects items = {state}></Selects>,
+      style:'select',
       rules:
       {
         required: true,
       },
+      options:state,
     },{
         title: '操作',
       dataIndex: 'operate',
@@ -154,9 +155,6 @@ const editInfo = (e) =>{
 
 
 export default class CarInfo extends Component{
-    addCarInfo = () =>{
-        this.setState((state,props)=>({disable:true}),()=>{});
-    }
     constructor(props){
         super(props);
         this.state={
@@ -185,9 +183,8 @@ export default class CarInfo extends Component{
               <Breadcrumb.Item>预约列表</Breadcrumb.Item>
             </Breadcrumb>
             <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
-            <DealInfo disable={this.state.disable} chengeInput={this.chengeInput}></DealInfo>
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <MadelStyle columns={columns} action="yuyue"/>
+            <MadelStyle columns={columns} action="add" label="新增"/>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>
           </div> 

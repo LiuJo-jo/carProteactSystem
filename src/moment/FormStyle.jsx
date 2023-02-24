@@ -1,6 +1,5 @@
-import { Button, Form, Input, InputNumber } from 'antd';
+import { Button, Form, Input,Select,DatePicker } from 'antd';
 import React from 'react';
-
 
 //需要封装每个类型的输入框……
 const layout = {
@@ -22,7 +21,6 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-
 class InputStyle extends React.Component{
   constructor(props){
     super(props);
@@ -35,10 +33,33 @@ class InputStyle extends React.Component{
     this.props.changeTypeTable();
   }
 
- 
+  getFeild= (column)=>{
+    const children = [];
+    children.push(column.map((element,index)=>{
+        console.log(element)
+        return <Form.Item  label={element.title} name = {element.key}  rules={[element.rules]} key={index}>{this.gitStyle(element)}</Form.Item>;
+      }))
+    return children;
+  }
+
+  gitStyle=(element)=>{
+    switch (element.style){
+      case "select":
+        return <Select options = {element.options}  
+        style={{
+          width: 120,
+        }}></Select>
+      case "input":
+        return <Input/>
+      case "textarea":
+        return <Input.TextArea/>
+      case "date":
+        return <DatePicker showTime  format="YYYY-MM-DD HH:mm:ss"/>
+      default: return null;
+  }
+}
 
   render(){
-    const action = this.props.action;
     const column = this.props.columns.filter((item)=>{
       return item.fillIn
     })
@@ -51,13 +72,12 @@ class InputStyle extends React.Component{
       height: "50%",
     }}
     validateMessages={validateMessages}
+
   >
     {
-      column.map((element,index)=>{
-        console.log(element)
-        return <Form.Item  label={element.title} name = {[action,element.key]}  rules={[element.rules]} key={index}>{element.style}</Form.Item>;
-      })
+      this.getFeild(column)
     }
+   
     <Form.Item
       wrapperCol={{
         ...layout.wrapperCol,

@@ -1,10 +1,8 @@
 import React,{Component} from "react";
-import {  Breadcrumb ,Space,Button,Input} from 'antd';
+import {  Breadcrumb ,Space,Button} from 'antd';
 import {InputStyle} from '../../moment/InputStyle';
 import TableStyle from '../../moment/TableStyle';
-// import DealInfo from '../DealInfo';
 import MadelStyle from '../../moment/madelStyle'
-const { TextArea } = Input;
 const columns = [
     {
       title: '员工Id',
@@ -13,11 +11,11 @@ const columns = [
       fillIn:false,
     },
     {
-      title: '保养员姓名',
+      title: '姓名',
       dataIndex: 'name',
       key: 'name',
       fillIn:true,
-      style:<Input/>,
+      style:"input",
       rules:
         {
           required: true,
@@ -28,7 +26,7 @@ const columns = [
         dataIndex: 'phone',
         key: 'phone',
         fillIn:true,
-        style:<Input/>,
+        style:"input",
         rules:
         {
           required: true,
@@ -49,7 +47,7 @@ const columns = [
       dataIndex: 'other',
       key: 'other',
       fillIn:true,
-      style: <TextArea rows={3} maxLength={255} />,
+      style: 'textarea',
   },{
         title: '操作',
       dataIndex: 'operate',
@@ -77,9 +75,6 @@ const editInfo = (e) =>{
 
 
 export default class CarInfo extends Component{
-    addCarInfo = () =>{
-        this.setState((state,props)=>({disable:true}),()=>{});
-    }
     constructor(props){
         super(props);
         this.state={
@@ -87,6 +82,7 @@ export default class CarInfo extends Component{
             dataTitle:columns,
             page: 1,
             disable:false,
+            action:'add',
         }
     }
     setInput = (val) =>{
@@ -108,8 +104,8 @@ export default class CarInfo extends Component{
             <Breadcrumb.Item>保养人员</Breadcrumb.Item>
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
-            <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <MadelStyle columns={columns} action = 'fix'></MadelStyle>
+            <InputStyle lables = "请输入姓名" setValue={this.setInput} />
+            <MadelStyle columns={columns} action = 'add' label ="新增"></MadelStyle>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>
           </div> 

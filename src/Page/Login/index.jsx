@@ -2,17 +2,16 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
 import { createBrowserHistory } from 'history';
 import  '../Login/indexStyle.css';
-
+import {login} from '../../api/api';
 const history = createBrowserHistory();
 const onFinish = (values) => {
-    console.log("111");
-    //处理导航显示
-    history.push('/home/shouye',{
-        name:'测试',
-        username:'1',
-        shenfen:'管理员'
-    });
-    // console.log(history.location,"??");
+    //登录校验
+    const userInfo = login(values);
+    localStorage.setItem("username",userInfo.username);
+    localStorage.setItem("id",userInfo.id);
+    localStorage.setItem("authority",userInfo.authority);
+    localStorage.setItem("name",userInfo.name);
+    history.push('/home/shouye',userInfo);
     history.go();
 };
 const onFinishFailed = (errorInfo) => {

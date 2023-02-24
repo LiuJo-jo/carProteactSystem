@@ -2,28 +2,68 @@ import React,{Component} from "react";
 import {  Breadcrumb ,Space,Button} from 'antd';
 import {InputStyle} from '../../moment/InputStyle';
 import TableStyle from '../../moment/TableStyle';
-import DealInfo from '../DealInfo';
 import MadelStyle from '../../moment/madelStyle'
 const columns = [
     {
       title: 'Id',
       dataIndex: 'id',
       key: 'id',
+      fillIn: false,
     },
     {
       title: '车牌号码',
       dataIndex: 'numberplate',
       key: 'numberplate',
+      style: "input",
+      fillIn: true,
+      rules:
+      {
+        required: true,
+      },
+    },
+    {
+      title: '品牌',
+      dataIndex: 'branchs',
+      key: 'branchs',
+      style: "select",
+      fillIn: true,
+      rules:
+      {
+        required: true,
+      },
+    },
+    {
+      title: '型号',
+      dataIndex: 'types',
+      key: 'types',
+      style: "select",
+      fillIn: true,
+      rules:
+      {
+        required: true,
+      },
     },
     {
         title: '车主姓名',
         dataIndex: 'name',
         key: 'name',
+        style: "input",
+        fillIn: true,
+        rules:
+        {
+          required: true,
+        },
       },
     {
       title: '联系方式',
       dataIndex: 'phone',
       key: 'phone',
+      style: "input",
+      fillIn: true,
+      rules:
+      {
+        required: true,
+      },
     },{
         title: '创建时间',
       dataIndex: 'createTime',
@@ -58,9 +98,7 @@ const editInfo = (e) =>{
 
 
 export default class CarInfo extends Component{
-    addCarInfo = () =>{
-        this.setState((state,props)=>({disable:true}),()=>{});
-    }
+    
     constructor(props){
         super(props);
         this.state={
@@ -73,8 +111,8 @@ export default class CarInfo extends Component{
     setInput = (val) =>{
         //后台查询
         this.setState(state=>{
-           return {dataList:[{key:'3',id:'1',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'},
-           {key:'2',id:'2',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}]
+           return {dataList:[{key:'3',id:'1',numberplate:"苏A128344",branchs:"奥拓",types:"e-tron",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'},
+           {key:'2',id:'2',numberplate:"苏A121244",branchs:"大众",types:"途观L",name:"宋教仁",phone:'17736236346',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}]
         }})
     }
     componentDidMount(){
@@ -89,9 +127,8 @@ export default class CarInfo extends Component{
             <Breadcrumb.Item>车辆信息</Breadcrumb.Item>
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
-            <DealInfo disable={this.state.disable} chengeInput={this.chengeInput}></DealInfo>
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <MadelStyle columns={columns}/>
+            <MadelStyle label = {"新增"} columns={columns} action="add"/>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>
           </div> 

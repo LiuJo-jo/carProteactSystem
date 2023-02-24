@@ -7,31 +7,54 @@ import Yuyue  from '../Page/Yuyue/index';
 import FixMan  from '../Page/FixMan/index';
 //路由声明
 //使用memo缓存页面，防止重复加载
-    const DefineRoutes= [{
+const DefineRoutes = localStorage.getItem('authority') ==1?[{
         //首页路由
         path: '/home/shouye',
         label:'首页',
         element: <Shouye></Shouye>,
-        icon: <PieChartOutlined />
+        icon: <PieChartOutlined />,
+        authority:[1,2]
     },
     {
         //车辆信息路由
         path: '/home/carinfo',
         label:"车辆信息",
         element: <CarInfo></CarInfo>,
-        icon:  <CarOutlined />
+        icon:  <CarOutlined />,
+        authority:[1]
     },
     {
         
         path: '/home/yuyue',
         label:"预约列表",
         element: <Yuyue></Yuyue>,
-        icon:  <FileOutlined />
+        icon:  <FileOutlined />,
+        authority:[1,2]
     },
     {   
         path: '/home/weixiu',
         label:"维修人员",
         element: <FixMan></FixMan>,
-        icon:  <UserOutlined />
-    }]
-export default DefineRoutes;
+        icon:  <UserOutlined />,
+        authority:[1]
+    }]:[{
+        //首页路由
+        path: '/home/shouye',
+        label:'首页',
+        element: <Shouye></Shouye>,
+        icon: <PieChartOutlined />,
+        authority:[1,2]
+    },
+    
+    {
+        
+        path: '/home/yuyue',
+        label:"预约列表",
+        element: <Yuyue></Yuyue>,
+        icon:  <FileOutlined />,
+        authority:[1,2]
+    },
+    ];
+
+
+export default  DefineRoutes;
