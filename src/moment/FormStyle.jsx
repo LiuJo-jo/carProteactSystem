@@ -37,7 +37,7 @@ class InputStyle extends React.Component{
     const children = [];
     children.push(column.map((element,index)=>{
         console.log(element)
-        return <Form.Item  label={element.title} name = {element.key}  rules={[element.rules]} key={index}>{this.gitStyle(element)}</Form.Item>;
+        return <Form.Item   label={element.title} name = {element.key}  rules={[element.rules]} key={index}>{this.gitStyle(element)}</Form.Item>;
       }))
     return children;
   }

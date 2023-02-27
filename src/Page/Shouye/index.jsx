@@ -17,6 +17,7 @@ const columns = [{
     key: 'name',
     style: "input",
     fillIn: true,
+    disable:'true',
   },
   {
     title: '密码',

@@ -5,12 +5,14 @@ import  '../Login/indexStyle.css';
 import {login} from '../../api/api';
 const history = createBrowserHistory();
 const onFinish = (values) => {
-    //登录校验
+    //登录接口校验
     const userInfo = login(values);
+    //缓存身份信息
     localStorage.setItem("username",userInfo.username);
     localStorage.setItem("id",userInfo.id);
     localStorage.setItem("authority",userInfo.authority);
     localStorage.setItem("name",userInfo.name);
+    //跳转主页
     history.push('/home/shouye',userInfo);
     history.go();
 };
@@ -74,7 +76,6 @@ const Login = () => (
         span: 16,
       }}
     >
-      <Checkbox>记住密码</Checkbox>
     </Form.Item>
 
     <Form.Item

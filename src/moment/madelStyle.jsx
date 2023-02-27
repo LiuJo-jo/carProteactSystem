@@ -2,9 +2,12 @@ import { Button, Modal } from 'antd';
 import { useState } from 'react';
 import FormStyle from './FormStyle';
 import React from 'react';
+
 const madelStyle = (props) => {
   const [open, setOpen] = useState(false);
+  const [detail, setDetail] = useState({});
   const showModal = () => {
+    this.setDetail()
     setOpen(true);
   };
   const hideModal = () => {

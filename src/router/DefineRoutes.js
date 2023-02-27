@@ -13,7 +13,6 @@ const DefineRoutes = localStorage.getItem('authority') ==1?[{
         label:'首页',
         element: <Shouye></Shouye>,
         icon: <PieChartOutlined />,
-        authority:[1,2]
     },
     {
         //车辆信息路由
@@ -21,7 +20,6 @@ const DefineRoutes = localStorage.getItem('authority') ==1?[{
         label:"车辆信息",
         element: <CarInfo></CarInfo>,
         icon:  <CarOutlined />,
-        authority:[1]
     },
     {
         
@@ -29,21 +27,18 @@ const DefineRoutes = localStorage.getItem('authority') ==1?[{
         label:"预约列表",
         element: <Yuyue></Yuyue>,
         icon:  <FileOutlined />,
-        authority:[1,2]
     },
     {   
         path: '/home/weixiu',
         label:"维修人员",
         element: <FixMan></FixMan>,
         icon:  <UserOutlined />,
-        authority:[1]
     }]:[{
         //首页路由
         path: '/home/shouye',
         label:'首页',
         element: <Shouye></Shouye>,
         icon: <PieChartOutlined />,
-        authority:[1,2]
     },
     
     {
@@ -52,7 +47,6 @@ const DefineRoutes = localStorage.getItem('authority') ==1?[{
         label:"预约列表",
         element: <Yuyue></Yuyue>,
         icon:  <FileOutlined />,
-        authority:[1,2]
     },
     ];
 
