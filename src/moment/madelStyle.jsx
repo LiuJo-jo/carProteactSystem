@@ -2,12 +2,15 @@ import { Button, Modal } from 'antd';
 import { useState } from 'react';
 import FormStyle from './FormStyle';
 import React from 'react';
-
+import { carInfoDetail } from '../api/api'
 const madelStyle = (props) => {
   const [open, setOpen] = useState(false);
   const [detail, setDetail] = useState({});
   const showModal = () => {
-    this.setDetail()
+    switch(props.action){
+      case 'carInfoEdit':
+        setDetail(carInfoDetail(props.record));
+    }
     setOpen(true);
   };
   const hideModal = () => {
@@ -27,7 +30,7 @@ const madelStyle = (props) => {
         cancelText="取消"
         footer=""
       >
-        <FormStyle changeTypeTable={hideModal} columns={props.columns}></FormStyle>
+        <FormStyle changeTypeTable={hideModal} columns={props.columns} detail = {detail}></FormStyle>
       </Modal>
     </>
   );

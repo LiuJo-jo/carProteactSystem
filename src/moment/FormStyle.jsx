@@ -24,6 +24,7 @@ const validateMessages = {
 class InputStyle extends React.Component{
   constructor(props){
     super(props);
+    console.log(this.props.detail);
   }
 
   onFinish = (values) => {
@@ -71,6 +72,7 @@ class InputStyle extends React.Component{
       width: "80%",
       height: "50%",
     }}
+    initialValues={this.props.detail}
     validateMessages={validateMessages}
 
   >
