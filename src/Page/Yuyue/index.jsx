@@ -61,8 +61,7 @@ export default class CarInfo extends Component{
               dataIndex: 'branch',
               key: 'branch',
               fillIn: true,
-              style:'select',
-              options:branchs,
+              style:'input',
             },
           {
               title: '预约人姓名',
@@ -173,7 +172,7 @@ export default class CarInfo extends Component{
             </Breadcrumb>
             <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <MadelStyle columns={this.columns} action="add" label="新增"/>
+            <MadelStyle columns={yuyue_info} action="add" label="新增"/>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>
           </div> 

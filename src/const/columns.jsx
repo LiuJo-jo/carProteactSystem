@@ -142,7 +142,10 @@ const state =
   },{
     value: '2',
     label: '已保养',
-  },]
+  },{
+    value: '3',
+    label: '已取消',
+  }]
 export const yuyue_info = [ {
   title: 'Id',
   dataIndex: 'id',
@@ -167,8 +170,7 @@ export const yuyue_info = [ {
     dataIndex: 'branch',
     key: 'branch',
     fillIn: true,
-    style:'select',
-    options:branchs,
+    style:'input',
   },
 {
     title: '预约人姓名',
