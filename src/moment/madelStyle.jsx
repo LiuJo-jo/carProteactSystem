@@ -2,7 +2,7 @@ import { Button, Modal } from 'antd';
 import { useState } from 'react';
 import FormStyle from './FormStyle';
 import React from 'react';
-import { carInfoDetail, yuyueInfoDetail,fixInfoDetail,userInfo  } from '../api/api'
+import { carInfoDetail, yuyueInfoDetail,fixInfoDetail,userInfo,fixInfo  } from '../api/api'
 const madelStyle = (props) => {
   const [open, setOpen] = useState(false);
   const [detail, setDetail] = useState({});
@@ -19,6 +19,8 @@ const madelStyle = (props) => {
         break;
       case 'user':
         setDetail(userInfo(props.record));
+      case 'distribution':
+        //处理分配维修工逻辑
       break;
     }
     setOpen(true);

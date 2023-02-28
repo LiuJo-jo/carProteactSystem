@@ -138,7 +138,15 @@ export default class CarInfo extends Component{
             key: 'operate',
             render:(text, record, _, action)=>(
                    <Space size="middle">
-                      {/* <Button type='link' style={{color:"#1677ff"}} onClick={editInfo(record)}>分配维修工</Button> */}
+                      <MadelStyle type='link' columns={[{title: '保养员',
+                      dataIndex: 'fixMan',
+                      key: 'fixMan',
+                      fillIn: true,
+                      style:'select',
+                      rules:
+                    {
+                      required: true,
+                    },}]} record action='distribution' setInput label = "分配维修工">分配维修工</MadelStyle>
                       <Delete label='删除' type='yuyueinfo' record></Delete>
                       <MadelStyle label = {"编辑"} columns={yuyue_info} action="yuyueInfoEdit" record  setInput/>
                    </Space>
