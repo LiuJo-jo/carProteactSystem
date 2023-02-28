@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {  Breadcrumb ,Space,Button} from 'antd';
+import {  Breadcrumb ,Space} from 'antd';
 import {InputStyle} from '../../moment/InputStyle';
 import TableStyle from '../../moment/TableStyle';
 import MadelStyle from '../../moment/madelStyle';
@@ -102,7 +102,6 @@ export default class CarInfo extends Component{
     }
     setInput = (val) =>{
       this.setState((state)=>({reserve: val}));
-      console.log(val);
         //后台查询
         this.setState(state=>{
            return {dataList:[{key:'3',id:'1',numberplate:"苏A128344",branchs:"奥拓",types:"e-tron",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'},
@@ -120,18 +119,6 @@ export default class CarInfo extends Component{
       this.setState((state)=>({disable: !this.state.disable}))
     }
 
-    deleteInfo = (e) =>{
-      return ()=>{
-          console.log(e.key);
-      }
-  }
-
-   editInfo = (e) =>{
-      return ()=>{
-          console.log(e.key);
-      }
-  }
-  
     render(){
             return <div>
             <Breadcrumb style={{ margin: '16px 0' }}>

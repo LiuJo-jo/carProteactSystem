@@ -11,7 +11,6 @@ const Delete = (props) => {
   const handleOk = () => {
     setModalText('The modal will be closed after two seconds');
     setConfirmLoading(true);
-    console.log(props.record);
     setTimeout(() => {
       setOpen(false);
       //请求删除接口

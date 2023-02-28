@@ -23,7 +23,7 @@ const columns = [{
     title: '密码',
     dataIndex: 'password',
     key: 'password',
-    style: "input",
+    style: "password",
     fillIn: true,
   },
  ]

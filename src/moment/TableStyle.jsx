@@ -23,7 +23,6 @@ export default class TableStyle extends React.Component{
     }
 
     render(){
-        console.log(this.props)
         return <Table columns={this.state.dataTitle} dataSource={this.props.dataList}  pagination={{
             pageSize: 10,
             onChange:pageChange,

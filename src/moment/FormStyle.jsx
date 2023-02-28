@@ -24,20 +24,22 @@ const validateMessages = {
 class InputStyle extends React.Component{
   constructor(props){
     super(props);
-    console.log(this.props.detail);
+    this.state={
+      values:{}
+    }
   }
 
   onFinish = (values) => {
-    //传后端values
+    //处理编辑后的数据，并传给后端values
     console.log(values);
-    this.setState(()=>({...values}));
+    this.setState(()=>({values:values}));
+    console.log(this.props.detail);
     this.props.changeTypeTable();
   }
 
   getFeild= (column)=>{
     const children = [];
     children.push(column.map((element,index)=>{
-        console.log(element)
         return <Form.Item   label={element.title} name = {element.key}  rules={[element.rules]} key={index}>{this.gitStyle(element)}</Form.Item>;
       }))
     return children;
@@ -56,6 +58,8 @@ class InputStyle extends React.Component{
         return <Input.TextArea/>
       case "date":
         return <DatePicker showTime  format="YYYY-MM-DD HH:mm:ss"/>
+      case "password":
+        return  <Input.Password placeholder="input password" />
       default: return null;
   }
 }

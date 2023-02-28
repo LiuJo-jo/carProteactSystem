@@ -2,7 +2,7 @@ import { Button, Modal } from 'antd';
 import { useState } from 'react';
 import FormStyle from './FormStyle';
 import React from 'react';
-import { carInfoDetail } from '../api/api'
+import { carInfoDetail, yuyueInfoDetail,fixInfoDetail,userInfo  } from '../api/api'
 const madelStyle = (props) => {
   const [open, setOpen] = useState(false);
   const [detail, setDetail] = useState({});
@@ -10,6 +10,16 @@ const madelStyle = (props) => {
     switch(props.action){
       case 'carInfoEdit':
         setDetail(carInfoDetail(props.record));
+        break;
+      case 'yuyueInfoEdit':
+        setDetail(yuyueInfoDetail(props.record));
+        break;
+      case 'fixInfoEdit':
+        setDetail(fixInfoDetail(props.record));
+        break;
+      case 'user':
+        setDetail(userInfo(props.record));
+      break;
     }
     setOpen(true);
   };
@@ -29,7 +39,7 @@ const madelStyle = (props) => {
         okText="确认"
         cancelText="取消"
         footer=""
-      >
+      >{console.log(detail)}
         <FormStyle changeTypeTable={hideModal} columns={props.columns} detail = {detail}></FormStyle>
       </Modal>
     </>
