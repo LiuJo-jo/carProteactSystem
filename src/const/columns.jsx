@@ -82,22 +82,29 @@ export const fix_info = [
     key: 'name',
     fillIn:true,
     style:"input",
-    rules:
-      {
-        required: true,
-      },
   },
   {
-      title: '联系方式',
-      dataIndex: 'phone',
-      key: 'phone',
+      title: '登录账号',
+      dataIndex: 'username',
+      key: 'username',
       fillIn:true,
       style:"input",
       rules:
       {
         required: true,
       },
-  },{
+  },
+  {
+    title: '初始密码',
+    dataIndex: 'password',
+    key: 'password',
+    fillIn:true,
+    style:"input",
+    rules:
+    {
+      required: true,
+    },
+},{
       title: '创建时间',
     dataIndex: 'createTime',
     key: 'createTime',

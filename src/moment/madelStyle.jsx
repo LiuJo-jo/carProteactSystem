@@ -42,7 +42,7 @@ const madelStyle = (props) => {
         cancelText="取消"
         footer=""
       >{console.log(detail)}
-        <FormStyle changeTypeTable={hideModal} columns={props.columns} detail = {detail}></FormStyle>
+        <FormStyle changeTypeTable={hideModal} columns={props.columns} detail = {detail} action = {props.action} changeUserInfo={props.updateInfo}></FormStyle>
       </Modal>
     </>
   );

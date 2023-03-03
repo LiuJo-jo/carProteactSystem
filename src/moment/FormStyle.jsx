@@ -35,6 +35,7 @@ class InputStyle extends React.Component{
     this.setState(()=>({values:values}));
     console.log(this.props.detail);
     this.props.changeTypeTable();
+    this.props.changeUserInfo({...this.props.detail,...values})
   }
 
   getFeild= (column)=>{

@@ -24,7 +24,7 @@ const Delete = (props) => {
   return (
     <>
       <Button style={{margin:"0 0 0 20px"}} onClick={showModal}>
-        删除
+        {props.label}
       </Button>
       <Modal
         title="警告"
@@ -33,7 +33,7 @@ const Delete = (props) => {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <p>确定删除吗？</p>
+        <p>{props.alert}</p>
       </Modal>
     </>
   );

@@ -86,7 +86,7 @@ export default class CarInfo extends Component{
             key: 'operate',
             render:(text, record, _, action)=>(
                    <Space size="middle">
-                       <Delete label='删除' type='carinfo' record></Delete>
+                       <Delete label='删除' alert={"确定删除吗"} type='carinfo' record></Delete>
                        <MadelStyle label = {"编辑"} columns={car_info} action="carInfoEdit" record  setInput/>
                    </Space>
             ),

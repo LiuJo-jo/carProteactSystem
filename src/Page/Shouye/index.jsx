@@ -3,6 +3,7 @@ import {  Breadcrumb } from 'antd';
 import { createBrowserHistory } from 'history';
 import MadelStyle from '../../moment/madelStyle'
 import '../Shouye/index.css';
+import Delete from '../../moment/Delete';
 const history = createBrowserHistory();
 
 const columns = [{
@@ -18,6 +19,10 @@ const columns = [{
     style: "input",
     fillIn: true,
     disable:'true',
+    rules:
+              {
+                required: true,
+              },
   },
   {
     title: '密码',
@@ -25,6 +30,10 @@ const columns = [{
     key: 'password',
     style: "password",
     fillIn: true,
+    rules:
+              {
+                required: true,
+              },
   },
  ]
 
@@ -36,6 +45,9 @@ export default class Shouye extends Component{
             ...history.location.state
         }
     }
+    changeUserInfo = (e) =>{
+      this.setState(()=>({...e}))
+    }
     render(){
         return <div>
             <Breadcrumb style={{ margin: '16px 0' }}>
@@ -46,7 +58,8 @@ export default class Shouye extends Component{
             <div className="infoStyle">姓名：{this.state.name}</div>
             <div className="infoStyle">身份：{this.state.authority===1?"管理员":"维修人"}</div>
             <div className="infoStyle">账号：{this.state.username}</div>
-            <MadelStyle label = {"修改信息"} columns={columns} action="user"/>
+            <MadelStyle label = {"修改信息"} columns={columns} action="user" updateInfo = {this.changeUserInfo}/>
+            <Delete label = '退出登录' alert="确认退出吗"></Delete>
           </div>
         </div>
     }

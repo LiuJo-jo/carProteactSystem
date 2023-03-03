@@ -61,7 +61,7 @@ export default class CarInfo extends Component{
           fillIn:false,
           render:(text, record, _, action)=>(
                  <Space size="middle">
-                    <Delete label='删除' type='fixinfo' record></Delete>
+                    <Delete label='删除'  alert={"确定删除吗"} type='fixinfo' record></Delete>
                     <MadelStyle label = {"编辑"} columns={fix_info} action="fixInfoEdit" record  setInput/>
                  </Space>
           ),
@@ -96,7 +96,7 @@ export default class CarInfo extends Component{
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
             <InputStyle lables = "请输入姓名" setValue={this.setInput} />
-            <MadelStyle columns={fix_info} action = 'add' label ="新增"></MadelStyle>
+            <MadelStyle columns={fix_info} action = 'addFixInfo' label ="新增"></MadelStyle>
             <div style={{margin:"0 0 30px 0"}} ></div>
             <TableStyle {...this.state}></TableStyle>
           </div> 
