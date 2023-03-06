@@ -9,7 +9,7 @@ const madelStyle = (props) => {
   const showModal = () => {
     switch(props.action){
       case 'carInfoEdit':
-        setDetail(carInfoDetail(props.record));
+        setDetail(props.records);
         break;
       case 'yuyueInfoEdit':
         setDetail(yuyueInfoDetail(props.record));
@@ -41,7 +41,8 @@ const madelStyle = (props) => {
         okText="确认"
         cancelText="取消"
         footer=""
-      >{console.log(detail)}
+        destroyOnClose = {true}
+      >
         <FormStyle changeTypeTable={hideModal} columns={props.columns} detail = {detail} action = {props.action} changeUserInfo={props.updateInfo}></FormStyle>
       </Modal>
     </>

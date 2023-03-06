@@ -5,7 +5,7 @@ import TableStyle from '../../moment/TableStyle';
 import MadelStyle from '../../moment/madelStyle';
 import Delete from '../../moment/Delete';
 import { car_info } from '../../const/columns';
-
+import { carInfo } from '../../api/api';
 
 export default class CarInfo extends Component{
     
@@ -20,8 +20,8 @@ export default class CarInfo extends Component{
           },
           {
             title: '车牌号码',
-            dataIndex: 'numberplate',
-            key: 'numberplate',
+            dataIndex: 'carNumber',
+            key: 'carNumber',
             style: "input",
             fillIn: true,
             rules:
@@ -31,9 +31,9 @@ export default class CarInfo extends Component{
           },
           {
             title: '品牌',
-            dataIndex: 'branchs',
-            key: 'branchs',
-            style: "select",
+            dataIndex: 'brand',
+            key: 'brand',
+            style: "input",
             fillIn: true,
             rules:
             {
@@ -42,9 +42,9 @@ export default class CarInfo extends Component{
           },
           {
             title: '型号',
-            dataIndex: 'types',
-            key: 'types',
-            style: "select",
+            dataIndex: 'type',
+            key: 'type',
+            style: "input",
             fillIn: true,
             rules:
             {
@@ -64,8 +64,8 @@ export default class CarInfo extends Component{
             },
           {
             title: '联系方式',
-            dataIndex: 'phone',
-            key: 'phone',
+            dataIndex: 'phonenumber',
+            key: 'phonenumber',
             style: "input",
             fillIn: true,
             rules:
@@ -77,17 +77,13 @@ export default class CarInfo extends Component{
             dataIndex: 'createTime',
             key: 'createTime',
           },{
-              title: '创建人',
-              dataIndex: 'createManeger',
-              key: 'createManeger',
-          },{
               title: '操作',
             dataIndex: 'operate',
             key: 'operate',
             render:(text, record, _, action)=>(
                    <Space size="middle">
-                       <Delete label='删除' alert={"确定删除吗"} type='carinfo' record></Delete>
-                       <MadelStyle label = {"编辑"} columns={car_info} action="carInfoEdit" record  setInput/>
+                       <Delete label='删除' alert={"确定删除吗"} type='carinfo' records = {record}></Delete>
+                       <MadelStyle label = {"编辑"} columns={car_info} action="carInfoEdit" records = {record}  setInput/>
                    </Space>
             ),
           }
@@ -95,7 +91,8 @@ export default class CarInfo extends Component{
         this.state={
             dataList:[],
             dataTitle:columns,
-            page: 1,
+            pageNumber: 1,
+            pageSize:10,
             disable:false,
             initialValues :{},
         }
@@ -103,17 +100,16 @@ export default class CarInfo extends Component{
     setInput = (val) =>{
       this.setState((state)=>({reserve: val}));
         //后台查询
-        this.setState(state=>{
-           return {dataList:[{key:'3',id:'1',numberplate:"苏A128344",branchs:"奥拓",types:"e-tron",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'},
-           {key:'2',id:'2',numberplate:"苏A121244",branchs:"大众",types:"途观L",name:"宋教仁",phone:'17736236346',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}]
-        }})
+        var pageSize = this.state.pageSize;
+        var pageNumber = this.state.pageNumber;
+        var carNumber = val;
+      carInfo({pageNumber,pageSize,carNumber}).then(data=>{this.setState(state=>{
+        return {dataList:data.data}})})
     }
     componentDidMount(){
         //后台初始数据请求
-        this.setState(state=>{
-          return {dataList:[{key:'3',id:'1',numberplate:"苏A128344",branchs:"奥拓",types:"e-tron",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'},
-          {key:'2',id:'2',numberplate:"苏A121244",branchs:"大众",types:"途观L",name:"宋教仁",phone:'17736236346',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}]
-       }})
+       carInfo({pageNumber: 1,pageSize:10}).then(data=>{this.setState(state=>{
+          return {dataList:data.data}})})
     }
     chengeInput = () =>{
       this.setState((state)=>({disable: !this.state.disable}))
@@ -126,9 +122,9 @@ export default class CarInfo extends Component{
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <MadelStyle label = {"新增"} columns={this.state.dataTitle} action="carInfoAdd"   setInput/>
+            <MadelStyle label = {"新增"} columns={this.state.dataTitle} action="carCreate"   setInput/>
             <div style={{margin:"0 0 30px 0"}} ></div>
-            <TableStyle {...this.state}></TableStyle>
+            <TableStyle {...this.state} setInput> </TableStyle>
           </div> 
         </div>
     }

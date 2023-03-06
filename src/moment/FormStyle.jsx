@@ -1,6 +1,6 @@
-import { Button, Form, Input,Select,DatePicker } from 'antd';
+import { Button, Form, Input,Select,DatePicker,message } from 'antd';
 import React from 'react';
-
+import { CarInfoDeal } from '../api/api'
 //需要封装每个类型的输入框……
 const layout = {
   labelCol: {
@@ -31,11 +31,19 @@ class InputStyle extends React.Component{
 
   onFinish = (values) => {
     //处理编辑后的数据，并传给后端values
-    console.log(values);
     this.setState(()=>({values:values}));
-    console.log(this.props.detail);
     this.props.changeTypeTable();
-    this.props.changeUserInfo({...this.props.detail,...values})
+    // this.props.changeUserInfo({...this.props.detail,...values})
+    const action =this.props.action;
+    var res = {};
+    switch (action){
+      case 'carCreate':
+        res = CarInfoDeal(values,'create');
+      case 'carInfoEdit':
+        res = CarInfoDeal({...this.props.detail,...values},'edit');
+    }
+    try{res.then(data=>{if(data.code ==200){message.success(data.msg)}else{message.error(data.error)}})}
+    catch{alert("没补充完毕！")}
   }
 
   getFeild= (column)=>{

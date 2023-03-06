@@ -7,8 +7,8 @@ export const car_info = [
     },
     {
       title: '车牌号码',
-      dataIndex: 'numberplate',
-      key: 'numberplate',
+      dataIndex: 'carNumber',
+      key: 'carNumber',
       style: "input",
       fillIn: true,
       rules:
@@ -18,9 +18,9 @@ export const car_info = [
     },
     {
       title: '品牌',
-      dataIndex: 'branchs',
-      key: 'branchs',
-      style: "select",
+      dataIndex: 'brand',
+      key: 'brand',
+      style: "input",
       fillIn: true,
       rules:
       {
@@ -29,9 +29,9 @@ export const car_info = [
     },
     {
       title: '型号',
-      dataIndex: 'types',
-      key: 'types',
-      style: "select",
+      dataIndex: 'type',
+      key: 'type',
+      style: "input",
       fillIn: true,
       rules:
       {
@@ -51,8 +51,8 @@ export const car_info = [
       },
     {
       title: '联系方式',
-      dataIndex: 'phone',
-      key: 'phone',
+      dataIndex: 'phonenumber',
+      key: 'phonenumber',
       style: "input",
       fillIn: true,
       rules:
@@ -63,11 +63,7 @@ export const car_info = [
         title: '创建时间',
       dataIndex: 'createTime',
       key: 'createTime',
-    },{
-        title: '创建人',
-        dataIndex: 'createManeger',
-        key: 'createManeger',
-    }];
+    },];
 
 export const fix_info = [
   {

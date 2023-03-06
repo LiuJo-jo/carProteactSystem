@@ -3,7 +3,6 @@ import {  Table } from 'antd';
 
 const pageChange =(page, pageSize)=>{
     //待完善-页码更改数据重新加载
-    console.log(page,pageSize)
 }
 export default class TableStyle extends React.Component{
     constructor(props){
