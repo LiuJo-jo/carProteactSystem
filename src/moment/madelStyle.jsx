@@ -17,8 +17,8 @@ const madelStyle = (props) => {
       case 'fixInfoEdit':
         setDetail(fixInfoDetail(props.record));
         break;
-      case 'user':
-        setDetail(userInfo(props.record));
+      case 'userEdit':
+        setDetail(props.detail);
       case 'distribution':
         //处理分配维修工逻辑
       break;
@@ -43,7 +43,7 @@ const madelStyle = (props) => {
         footer=""
         destroyOnClose = {true}
       >
-        <FormStyle changeTypeTable={hideModal} columns={props.columns} detail = {detail} action = {props.action} changeUserInfo={props.updateInfo}></FormStyle>
+        <FormStyle changeTypeTable={hideModal} columns={props.columns} detail = {detail} action = {props.action} changeUserInfo={props.setInput}></FormStyle>
       </Modal>
     </>
   );

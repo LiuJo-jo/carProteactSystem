@@ -61,8 +61,8 @@ export default class CarInfo extends Component{
           fillIn:false,
           render:(text, record, _, action)=>(
                  <Space size="middle">
-                    <Delete label='删除'  alert={"确定删除吗"} type='fixinfo' record></Delete>
-                    <MadelStyle label = {"编辑"} columns={fix_info} action="fixInfoEdit" record  setInput/>
+                    <Delete label='删除'  alert={"确定删除吗"} action = "userCreate"  record={record} setInput={this.setInput}></Delete>
+                    <MadelStyle label = {"编辑"} columns={fix_info} action="fixInfoEdit" record={record}   setInput={this.setInput}/>
                  </Space>
           ),
         }
@@ -76,7 +76,7 @@ export default class CarInfo extends Component{
             action:'add',
         }
     }
-    setInput = (val) =>{
+    setInput = (val="") =>{
         //后台查询
         this.setState(state=>{
            return {dataList:[{key:'3',id:'1',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'},

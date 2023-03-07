@@ -45,10 +45,11 @@ export default class Shouye extends Component{
             ...history.location.state
         }
     }
-    changeUserInfo = (e) =>{
+    setInput = (e) =>{
       this.setState(()=>({...e}))
     }
     render(){
+        const detail = {id:this.state.id,name:this.state.name,authority:this.state.authority,username:this.state.username}
         return <div>
             <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>首页</Breadcrumb.Item>
@@ -58,7 +59,7 @@ export default class Shouye extends Component{
             <div className="infoStyle">姓名：{this.state.name}</div>
             <div className="infoStyle">身份：{this.state.authority===1?"管理员":"维修人"}</div>
             <div className="infoStyle">账号：{this.state.username}</div>
-            <MadelStyle label = {"修改信息"} columns={columns} action="user" updateInfo = {this.changeUserInfo}/>
+            <MadelStyle label = {"修改信息"}  columns={columns} detail ={detail} action="userEdit" setInput = {this.setInput}/>
             <Delete label = '退出登录' alert="确认退出吗"></Delete>
           </div>
         </div>

@@ -82,8 +82,8 @@ export default class CarInfo extends Component{
             key: 'operate',
             render:(text, record, _, action)=>(
                    <Space size="middle">
-                       <Delete label='删除' alert={"确定删除吗"} type='carinfo' records = {record}></Delete>
-                       <MadelStyle label = {"编辑"} columns={car_info} action="carInfoEdit" records = {record}  setInput/>
+                       <Delete label='删除' action = "carDelete" alert={"确定删除吗"} records = {record} setInput={this.setInput}></Delete>
+                       <MadelStyle label = {"编辑"} columns={car_info} action="carInfoEdit" records = {record}  setInput={this.setInput}/>
                    </Space>
             ),
           }
@@ -97,7 +97,7 @@ export default class CarInfo extends Component{
             initialValues :{},
         }
     }
-    setInput = (val) =>{
+    setInput = (val="") =>{
       this.setState((state)=>({reserve: val}));
         //后台查询
         var pageSize = this.state.pageSize;
@@ -122,9 +122,9 @@ export default class CarInfo extends Component{
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <MadelStyle label = {"新增"} columns={this.state.dataTitle} action="carCreate"   setInput/>
+            <MadelStyle label = {"新增"} columns={this.state.dataTitle} action="carCreate"   setInput={this.setInput}/>
             <div style={{margin:"0 0 30px 0"}} ></div>
-            <TableStyle {...this.state} setInput> </TableStyle>
+            <TableStyle {...this.state}  setInput={this.setInput}> </TableStyle>
           </div> 
         </div>
     }

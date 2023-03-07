@@ -146,9 +146,9 @@ export default class CarInfo extends Component{
                       rules:
                     {
                       required: true,
-                    },}]} record action='distribution' setInput label = "分配维修工">分配维修工</MadelStyle>
-                      <Delete label='删除'  alert={"确定删除吗"} type='yuyueinfo' record></Delete>
-                      <MadelStyle label = {"编辑"} columns={yuyue_info} action="yuyueInfoEdit" record  setInput/>
+                    },}]} record={record}  action='distribution' setInput label = "分配维修工">分配维修工</MadelStyle>
+                      <Delete label='删除' action = "yuyueDelete"  alert={"确定删除吗"}  record={record} setInput={this.setInput}></Delete>
+                      <MadelStyle label = {"编辑"} columns={yuyue_info} action="yuyueInfoEdit" record={record}  setInput={this.setInput}/>
                    </Space>
             ),
           }

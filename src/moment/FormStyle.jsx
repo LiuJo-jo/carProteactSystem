@@ -1,6 +1,6 @@
 import { Button, Form, Input,Select,DatePicker,message } from 'antd';
 import React from 'react';
-import { CarInfoDeal } from '../api/api'
+import { CarInfoDeal,userInfo } from '../api/api'
 //需要封装每个类型的输入框……
 const layout = {
   labelCol: {
@@ -33,17 +33,34 @@ class InputStyle extends React.Component{
     //处理编辑后的数据，并传给后端values
     this.setState(()=>({values:values}));
     this.props.changeTypeTable();
-    // this.props.changeUserInfo({...this.props.detail,...values})
     const action =this.props.action;
     var res = {};
     switch (action){
       case 'carCreate':
         res = CarInfoDeal(values,'create');
+        break;
       case 'carInfoEdit':
         res = CarInfoDeal({...this.props.detail,...values},'edit');
+        break;
+      case 'userEdit':
+        res = userInfo({...this.props.detail,...values},'edit');
+        break;
     }
-    try{res.then(data=>{if(data.code ==200){message.success(data.msg)}else{message.error(data.error)}})}
-    catch{alert("没补充完毕！")}
+    try{
+      res.then(data=>{
+        if(data.code ==200){
+          message.success(data.msg);
+          if(action == "userEdit"){
+            this.props.changeUserInfo({...this.props.detail,...values});
+          }else{
+            this.props.changeUserInfo();
+          }
+        }else{
+          message.error(data.error)
+        }})}
+    catch{
+      alert("没补充完毕！");
+    }
   }
 
   getFeild= (column)=>{

@@ -16,15 +16,32 @@ const Delete = (props) => {
     setConfirmLoading(true);
     setTimeout(() => {
       setOpen(false);
-      //请求删除接口
-      var res = CarInfoDeal([props.records.id],"delete");
-      try{res.then(data=>{if(data.code ==200){message.success(data.msg); debugger;     history.push('/home/carinfo');
-      history.go();}else{message.error(data.error)}})
-    }
-    catch{alert("没补充完毕！")}
-      //请求查询接口
-      setConfirmLoading(false);
-    }, 2000);
+      //请求删除接口(需要补充其他接口)
+      var res = {};
+      switch(props.action){
+        case 'carDelete':
+          res = CarInfoDeal([props.records.id],"delete");
+          break;
+        case 'yuyueDelete':
+          res ={};
+          break;
+        case 'userDelete':
+          res = {}
+          break;
+      }
+      try{
+        res.then(data=>{
+          if(data.code ==200){
+            message.success(data.msg); 
+            props.setInput();
+          }else{
+            message.error(data.error);
+          }})
+      }
+      catch{alert("没补充完毕！")}
+        //请求查询接口
+        setConfirmLoading(false);
+      }, 2000);
     
   };
   const handleCancel = () => {

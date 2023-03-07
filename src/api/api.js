@@ -43,8 +43,23 @@ export const fixInfoDetail = (record) =>{
     return {key:'3',id:'1',numberplate:"苏A128344",branchs:"奥拓",types:"e-tron",name:"赵雅尔",phone:'17736463636'}
 }
 //用户详细信息查询
-export const userInfo = (record) =>{
-    return {key:'1',id:'1',name:'张三',username:'1234565',authority:'1'}
+export const userInfo = (bodys,methods) =>{
+    switch(methods){
+        case "create":
+            bodys.createTime = moment().format('YYYY-MM-DD HH:mm:ss');
+            return fetch(url+'/user-entity/save',{method:'post',headers: new Headers({
+                'Content-Type': 'application/json'
+              }),body:JSON.stringify(bodys)}).then(res=>{return res.json();})
+        case "edit":
+            bodys.updateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+            return fetch(url+'/user-entity/update',{method:'post',headers: new Headers({
+                'Content-Type': 'application/json'
+              }),body:JSON.stringify(bodys)}).then(res=>{return res.json();})
+        case "delete":
+            return fetch(url+'/user-entity/delete',{method:'post',headers: new Headers({
+                'Content-Type': 'application/json'
+              }),body:JSON.stringify(bodys)}).then(res=>{return res.json();})
+    }
 }
 
 //新增、编辑、删除汽车信息接口
