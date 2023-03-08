@@ -1,9 +1,6 @@
 import React from 'react';
 import {  Table } from 'antd';
 
-const pageChange =(page, pageSize)=>{
-    //待完善-页码更改数据重新加载
-}
 export default class TableStyle extends React.Component{
     constructor(props){
         super(props);
@@ -13,6 +10,9 @@ export default class TableStyle extends React.Component{
             toutle:0,
             dataTitle: this.props.dataTitle
         }
+    }
+    pageChange = (page,pageSize)=>{
+        this.props.pageChange(page,pageSize);
     }
     
     componentDidMount(){
@@ -24,7 +24,8 @@ export default class TableStyle extends React.Component{
     render(){
         return <Table columns={this.state.dataTitle} dataSource={this.props.dataList}  pagination={{
             pageSize: 10,
-            onChange:pageChange,
+            onChange:this.pageChange,
+            total:this.props.total
           }}
          
           bordered="true"

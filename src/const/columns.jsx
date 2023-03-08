@@ -74,8 +74,8 @@ export const fix_info = [
   },
   {
     title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'user',
+    key: 'user',
     fillIn:true,
     style:"input",
   },
@@ -91,7 +91,7 @@ export const fix_info = [
       },
   },
   {
-    title: '初始密码',
+    title: '密码',
     dataIndex: 'password',
     key: 'password',
     fillIn:true,
@@ -100,6 +100,23 @@ export const fix_info = [
     {
       required: true,
     },
+},{
+  title: '权限',
+    dataIndex: 'authority',
+    key: 'authority',
+    fillIn:true,
+    style:"select",
+    rules:
+    {
+      required: true,
+    },
+    options:[ {
+      value: '1',
+      label: '超级管理员',
+    },{
+      value: '2',
+      label: '保养员',
+    },]
 },{
       title: '创建时间',
     dataIndex: 'createTime',
@@ -167,14 +184,6 @@ export const yuyue_info = [ {
   },
   options:branchs,
 },
-{
-  //从后台取
-    title: '品牌',
-    dataIndex: 'branch',
-    key: 'branch',
-    fillIn: true,
-    style:'input',
-  },
 {
     title: '预约人姓名',
     dataIndex: 'name',

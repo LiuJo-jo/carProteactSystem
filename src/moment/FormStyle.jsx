@@ -1,6 +1,6 @@
 import { Button, Form, Input,Select,DatePicker,message } from 'antd';
 import React from 'react';
-import { CarInfoDeal,userInfo } from '../api/api'
+import { CarInfoDeal,userInfo,FixInfoDeal,YuyueInfoDeal } from '../api/api'
 //需要封装每个类型的输入框……
 const layout = {
   labelCol: {
@@ -42,15 +42,27 @@ class InputStyle extends React.Component{
       case 'carInfoEdit':
         res = CarInfoDeal({...this.props.detail,...values},'edit');
         break;
-      case 'userEdit':
+      case 'userSelfEdit':
         res = userInfo({...this.props.detail,...values},'edit');
+        break;
+      case 'userEdit':
+          res = userInfo({...this.props.detail,...values},'edit');
+          break;
+      case 'fixCreate':
+        res = FixInfoDeal(values,'create');
+        break;
+      case 'yuyueEdit':
+        res=YuyueInfoDeal({...this.props.detail,...values},'edit');
+        break;
+      case "yuyueCreate":
+        res = YuyueInfoDeal(values,'create');
         break;
     }
     try{
       res.then(data=>{
         if(data.code ==200){
           message.success(data.msg);
-          if(action == "userEdit"){
+          if(action == "userSelfEdit"){
             this.props.changeUserInfo({...this.props.detail,...values});
           }else{
             this.props.changeUserInfo();

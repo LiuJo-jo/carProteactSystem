@@ -5,7 +5,7 @@ import TableStyle from '../../moment/TableStyle';
 import MadelStyle from '../../moment/madelStyle';
 import Delete from '../../moment/Delete';
 import { fix_info } from '../../const/columns';
-
+import { fixInfo } from '../../api/api';
 
 export default class CarInfo extends Component{
     constructor(props){
@@ -18,8 +18,8 @@ export default class CarInfo extends Component{
         },
         {
           title: '姓名',
-          dataIndex: 'name',
-          key: 'name',
+          dataIndex: 'user',
+          key: 'user',
           fillIn:true,
           style:"input",
           rules:
@@ -28,15 +28,32 @@ export default class CarInfo extends Component{
             },
         },
         {
-            title: '联系方式',
-            dataIndex: 'phone',
-            key: 'phone',
+            title: '用户账号',
+            dataIndex: 'username',
+            key: 'username',
             fillIn:true,
             style:"input",
             rules:
             {
               required: true,
             },
+        },{
+              title: '权限',
+              dataIndex: 'authority',
+              key: 'authority',
+              fillIn:true,
+              style:"select",
+              rules:
+              {
+                required: true,
+              },
+              options:[ {
+                value: '1',
+                label: '超级管理员',
+              },{
+                value: '2',
+                label: '保养员',
+              },]
         },{
             title: '创建时间',
           dataIndex: 'createTime',
@@ -61,8 +78,8 @@ export default class CarInfo extends Component{
           fillIn:false,
           render:(text, record, _, action)=>(
                  <Space size="middle">
-                    <Delete label='删除'  alert={"确定删除吗"} action = "userCreate"  record={record} setInput={this.setInput}></Delete>
-                    <MadelStyle label = {"编辑"} columns={fix_info} action="fixInfoEdit" record={record}   setInput={this.setInput}/>
+                    <Delete label='删除'  alert={"确定删除吗"} action = "userDelete"  records={record} setInput={this.setInput}></Delete>
+                    <MadelStyle label = {"编辑"} columns={fix_info} action="userEdit" detail={record}   setInput={this.setInput}/>
                  </Space>
           ),
         }
@@ -73,22 +90,33 @@ export default class CarInfo extends Component{
             dataTitle:columns,
             page: 1,
             disable:false,
-            action:'add',
+            pageNumber: 1,
+            pageSize:10,
         }
     }
+
     setInput = (val="") =>{
         //后台查询
-        this.setState(state=>{
-           return {dataList:[{key:'3',id:'1',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'},
-           {key:'2',id:'2',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}]
-        }})
+        this.setState((state)=>({reserve: val}));
+        //后台查询
+        var pageSize = this.state.pageSize;
+        var pageNumber = this.state.pageNumber;
+        var user = val;
+        fixInfo({pageNumber,pageSize,user}).then(data=>{this.setState(state=>{
+        return {dataList:data.data.data,total:data.data.total}})})
     }
+
     componentDidMount(){
         //后台初始数据请求
+        //还要请求车辆信息、维修人员信息
+          fixInfo({pageNumber: 1,pageSize:10}).then(data=>{this.setState(state=>{
+            return {dataList:data.data.data,total:data.data.total}})})
     }
-    chengeInput = () =>{
-      this.setState((state)=>({disable: !this.state.disable}))
+
+    pageChange =(page, pageSize)=>{
+      this.setState({pageNumber:page,pageSize:pageSize},()=>{this.setInput(this.state.reserve)});
     }
+
     render(){
             return <div>
             <Breadcrumb style={{ margin: '16px 0' }}>
@@ -96,9 +124,9 @@ export default class CarInfo extends Component{
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
             <InputStyle lables = "请输入姓名" setValue={this.setInput} />
-            <MadelStyle columns={fix_info} action = 'addFixInfo' label ="新增"></MadelStyle>
+            <MadelStyle columns={fix_info} action = 'fixCreate' label ="新增" setInput={this.setInput}></MadelStyle>
             <div style={{margin:"0 0 30px 0"}} ></div>
-            <TableStyle {...this.state}></TableStyle>
+            <TableStyle  {...this.state} setInput={this.setInput} pageChange={this.pageChange}></TableStyle>
           </div> 
         </div>
     }

@@ -5,6 +5,7 @@ import TableStyle from '../../moment/TableStyle';
 import MadelStyle from '../../moment/madelStyle';
 import Delete from '../../moment/Delete';
 import { yuyue_info } from '../../const/columns';
+import {fixInfo, yuyueInfo} from '../../api/api';
 const branchs = [
     {
       value: '奥拓',
@@ -55,14 +56,6 @@ export default class CarInfo extends Component{
             },
             options:branchs,
           },
-          {
-            //从后台取
-              title: '品牌',
-              dataIndex: 'branch',
-              key: 'branch',
-              fillIn: true,
-              style:'input',
-            },
           {
               title: '预约人姓名',
               dataIndex: 'name',
@@ -146,9 +139,9 @@ export default class CarInfo extends Component{
                       rules:
                     {
                       required: true,
-                    },}]} record={record}  action='distribution' setInput label = "分配维修工">分配维修工</MadelStyle>
+                    },}]} record={record}   action="yuyueEdit"  setInput={this.setInput}  label = "分配维修工">分配维修工</MadelStyle>
                       <Delete label='删除' action = "yuyueDelete"  alert={"确定删除吗"}  record={record} setInput={this.setInput}></Delete>
-                      <MadelStyle label = {"编辑"} columns={yuyue_info} action="yuyueInfoEdit" record={record}  setInput={this.setInput}/>
+                      <MadelStyle label = {"编辑"} columns={yuyue_info} action="yuyueEdit" record={record}  setInput={this.setInput}/>
                    </Space>
             ),
           }
@@ -156,22 +149,21 @@ export default class CarInfo extends Component{
         this.state={
             dataList:[],
             dataTitle:columns,
-            page: 1,
+            pageSize: 10,
+            pageNumber:1,
             disable:false,
+            reserve:''
         }
     }
-    setInput = (val) =>{
+    setInput = (val="") =>{
         //后台查询
-        this.setState(state=>{
-           return {dataList:[{key:'1',id:'1',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'},
-           {key:'2',id:'2',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}, {key:'2',id:'2',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}, {key:'2',id:'2',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}, {key:'2',id:'2',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}, {key:'2',id:'2',numberplate:"苏A128344",name:"赵雅尔",phone:'17736463636',createTime:'2023-02-14 04:23:12',createManeger:'赵二'}]
-        }})
+        const body = {pageSize:this.state.pageSize,pageNumber:this.state.pageNumber,carNumber:val};
+        yuyueInfo(body).then(data=>{return this.setState({dataList:data.data.data,total:data.data.total},()=>{})})
     }
     componentDidMount(){
         //后台初始数据请求
-    }
-    chengeInput = () =>{
-      this.setState((state)=>({disable: !this.state.disable}))
+      const body = {pageSize:this.state.pageSize,pageNumber:this.state.pageNumber};
+      yuyueInfo(body).then(data=>{return this.setState({dataList:data.data.data,total:data.data.total},()=>{})})
     }
     render(){
             return <div>
@@ -182,7 +174,7 @@ export default class CarInfo extends Component{
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
             <MadelStyle columns={yuyue_info} action="add" label="新增"/>
             <div style={{margin:"0 0 30px 0"}} ></div>
-            <TableStyle {...this.state}></TableStyle>
+            <TableStyle {...this.state} ></TableStyle>
           </div> 
         </div>
     }

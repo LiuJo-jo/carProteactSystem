@@ -1,7 +1,7 @@
 import { Button, Modal,message } from 'antd';
 import { useState } from 'react';
 import React from 'react';
-import { CarInfoDeal } from '../api/api';
+import { CarInfoDeal ,FixInfoDeal, YuyueInfoDeal} from '../api/api';
 import { createBrowserHistory } from 'history';
 const Delete = (props) => {
   const [open, setOpen] = useState(false);
@@ -23,10 +23,10 @@ const Delete = (props) => {
           res = CarInfoDeal([props.records.id],"delete");
           break;
         case 'yuyueDelete':
-          res ={};
+          res = YuyueInfoDeal([props.records.id],"delete");
           break;
         case 'userDelete':
-          res = {}
+          res = FixInfoDeal([props.records.id],"delete");
           break;
       }
       try{

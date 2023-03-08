@@ -104,16 +104,18 @@ export default class CarInfo extends Component{
         var pageNumber = this.state.pageNumber;
         var carNumber = val;
       carInfo({pageNumber,pageSize,carNumber}).then(data=>{this.setState(state=>{
-        return {dataList:data.data}})})
+        return {dataList:data.data.data,total:data.data.total}})})
     }
     componentDidMount(){
         //后台初始数据请求
        carInfo({pageNumber: 1,pageSize:10}).then(data=>{this.setState(state=>{
-          return {dataList:data.data}})})
+          return {dataList:data.data.data,total:data.data.total}})})
     }
-    chengeInput = () =>{
-      this.setState((state)=>({disable: !this.state.disable}))
+
+    pageChange =(page, pageSize)=>{
+      this.setState({pageNumber:page,pageSize:pageSize},()=>{this.setInput(this.state.reserve)});
     }
+
 
     render(){
             return <div>
@@ -122,9 +124,9 @@ export default class CarInfo extends Component{
           </Breadcrumb>
           <div style={{ padding: 24, minHeight: 660, background: "white" }}>   
             <InputStyle lables = "请输入车牌号" setValue={this.setInput} />
-            <MadelStyle label = {"新增"} columns={this.state.dataTitle} action="carCreate"   setInput={this.setInput}/>
+            <MadelStyle label = {"新增"} columns={this.state.dataTitle} action="carCreate" setInput={this.setInput}/>
             <div style={{margin:"0 0 30px 0"}} ></div>
-            <TableStyle {...this.state}  setInput={this.setInput}> </TableStyle>
+            <TableStyle {...this.state}  setInput={this.setInput} pageChange={this.pageChange}> </TableStyle>
           </div> 
         </div>
     }
